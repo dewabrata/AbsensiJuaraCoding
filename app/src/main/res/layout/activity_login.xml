@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:foreground="@color/cyan_800_overlay"
         android:scaleType="centerCrop"
-        android:src="@drawable/bgloginx" />
+        android:src="@drawable/logodika" />
 
     <LinearLayout
         android:layout_width="330dp"
@@ -75,6 +75,7 @@
             android:theme="@style/EditText.White.Hint">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -100,6 +101,7 @@
             android:theme="@style/EditText.White.Hint">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="-4dp"
@@ -125,7 +127,7 @@
             android:layout_gravity="center_horizontal">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
+                android:id="@+id/fabLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
