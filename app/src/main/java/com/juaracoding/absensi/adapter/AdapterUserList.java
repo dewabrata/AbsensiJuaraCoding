@@ -39,20 +39,19 @@ public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class OriginalViewHolder extends RecyclerView.ViewHolder {
+        ImageView imgPhoto ;
         TextView txtNama ;
-        TextView txtTanggal ;
-        TextView txtNotes ;
-        TextView txtDeskripsi;
-        ImageView imgPriority ;
+        TextView txtRegisteredDate ;
+        TextView txtEmail;
+
 
         public OriginalViewHolder(View view) {
               super(view);
 
-         /*    txtNama = (TextView) view.findViewById(R.id.txtNama);
-             txtTanggal = (TextView) view.findViewById(R.id.txtTanggal);
-             txtNotes = (TextView) view.findViewById(R.id.txtNotes);
-             txtDeskripsi = (TextView) view.findViewById(R.id.txtDeskripsi);
-             imgPriority = (ImageView) view.findViewById(R.id.imgPriority);*/
+             txtNama = (TextView) view.findViewById(R.id.txtNama);
+             txtEmail = (TextView) view.findViewById(R.id.txtEmail);
+             txtRegisteredDate = (TextView) view.findViewById(R.id.registeredDate);
+           //  imgPhoto = (ImageView) view.findViewById(R.id.imgPhoto);
 
         }
     }
@@ -62,9 +61,9 @@ public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-      //  View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.to_do_list_item, parent, false);
-       // vh = new OriginalViewHolder(v);
-        return null ;//vh
+       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, parent, false);
+        vh = new OriginalViewHolder(v);
+        return vh ;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -73,8 +72,12 @@ public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder view = (OriginalViewHolder) holder;
 
-            User todo = items.get(position);
+            User user = items.get(position);
 
+            view.txtNama.setText(user.getFirstname());
+            view.txtEmail.setText(user.getEmail());
+            view.txtRegisteredDate.setText(user.getRegisteredDate());
+          //  view.imgPhoto.setImageResource(R.drawable.photo_female_4);
 
 
 

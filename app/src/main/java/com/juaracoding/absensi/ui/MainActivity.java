@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,16 +16,31 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.juaracoding.absensi.R;
+import com.juaracoding.absensi.adapter.AdapterUserList;
+import com.juaracoding.absensi.model.DummyDataFactory;
 
 public class MainActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private Toolbar toolbar;
+    private RecyclerView listUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        listUser = (RecyclerView)findViewById(R.id.listUser);
         initToolbar();
         initNavigationMenu();
+
+        initData();
+    }
+
+    private void initData() {
+
+        AdapterUserList toadapter = new AdapterUserList (this,new DummyDataFactory().createUser());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
+        listUser.setLayoutManager(linearLayoutManager);
+
+        listUser.setAdapter(toadapter);
     }
 
     private void initToolbar() {
