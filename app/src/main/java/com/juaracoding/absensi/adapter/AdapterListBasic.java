@@ -1,7 +1,6 @@
 package com.juaracoding.absensi.adapter;
 
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.juaracoding.absensi.R;
 import com.juaracoding.absensi.model.User;
 
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterListBasic extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<User> items = new ArrayList<>();
 
@@ -33,7 +31,7 @@ public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public AdapterUserList(Context context, List<User> items) {
+    public AdapterListBasic(Context context, List<User> items) {
         this.items = items;
         ctx = context;
     }

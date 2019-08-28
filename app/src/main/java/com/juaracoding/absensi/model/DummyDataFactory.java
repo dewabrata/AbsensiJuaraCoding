@@ -34,6 +34,11 @@ public class DummyDataFactory {
         todo.add(new User(1,"user001","12345","Dewa","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
         todo.add(new User(2,"user001","12345","Dewi","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
         todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
+        todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
+        todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
+        todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
+        todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
+        todo.add( new User(3,"user001","12345","Dewo","brata","","Laki-Laki",new Date(),"","","dewabrata","",""));
 
 
       return todo;
