@@ -46,7 +46,7 @@ public class AdapterListBasic extends RecyclerView.Adapter<RecyclerView.ViewHold
         public OriginalViewHolder(View view) {
               super(view);
 
-             txtNama = (TextView) view.findViewById(R.id.txtPersonel);
+             txtNama = (TextView) view.findViewById(R.id.txtTitle);
              txtEmail = (TextView) view.findViewById(R.id.txtEmail);
              txtRegisteredDate = (TextView) view.findViewById(R.id.registeredDate);
            //  imgPhoto = (ImageView) view.findViewById(R.id.imgPhoto);

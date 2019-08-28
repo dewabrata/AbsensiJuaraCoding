@@ -104,7 +104,7 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public ContohViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtPersonel = (TextView) itemView.findViewById(R.id.txtPersonel);
+            txtPersonel = (TextView) itemView.findViewById(R.id.txtTitle);
             imgPersonel = (ImageView)itemView.findViewById(R.id.imgPersonel);
             btnPersonel = (Button)itemView.findViewById(R.id.btnPersonel);
 
@@ -121,7 +121,7 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public ContohViewHolder2(@NonNull View itemView) {
             super(itemView);
-            txtPersonel2 = (TextView) itemView.findViewById(R.id.txtPersonel);
+            txtPersonel2 = (TextView) itemView.findViewById(R.id.txtTitle);
             imgPersonel2 = (ImageView)itemView.findViewById(R.id.imgPhoto);
             btnPersonel2 = (TextView)itemView.findViewById(R.id.txtEmail);
             txtDate = (TextView)itemView.findViewById(R.id.registeredDate);

@@ -6,6 +6,8 @@ package com.juaracoding.absensi.service;
 
 
 
+import com.juaracoding.absensi.model.imdb.post.Comment;
+import com.juaracoding.absensi.model.imdb.post.Post;
 import com.juaracoding.absensi.model.user.User;
 
 
@@ -35,6 +37,11 @@ import retrofit2.http.Query;
     @GET("users")
     Call<com.juaracoding.absensi.model.reqres.User> getUserReqres(@Query("page") String page);
 
+    @GET("posts")
+    Call<List<Post>> getPost();
+
+    @GET("comments")
+    Call<List<Comment>> getComment(@Query("postId") String postId);
 
 
    /* @FormUrlEncoded

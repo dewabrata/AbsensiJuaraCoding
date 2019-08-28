@@ -48,7 +48,7 @@ public class AdapterUserList extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public OriginalViewHolder(View view) {
               super(view);
 
-             txtNama = (TextView) view.findViewById(R.id.txtPersonel);
+             txtNama = (TextView) view.findViewById(R.id.txtTitle);
              txtEmail = (TextView) view.findViewById(R.id.txtEmail);
              txtRegisteredDate = (TextView) view.findViewById(R.id.registeredDate);
            //  imgPhoto = (ImageView) view.findViewById(R.id.imgPhoto);

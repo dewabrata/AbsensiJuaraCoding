@@ -1,6 +1,7 @@
 package com.juaracoding.absensi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.juaracoding.absensi.R;
-import com.juaracoding.absensi.model.user.User;
-
+import com.juaracoding.absensi.model.imdb.post.Post;
+import com.juaracoding.absensi.ui.CommentActivity;
 
 import java.util.List;
 
-public class AdapterTemplateAwal extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     Context context;
-    List<User> lstUser;
+    List<Post> lstPost;
 
-    public AdapterTemplateAwal(Context context , List<User> lstUser ) {
+    public PostAdapter(Context context , List<Post> lstUser ) {
 
         this.context = context;
-        this.lstUser = lstUser;
+        this.lstPost = lstUser;
 
     }
 
@@ -34,7 +35,7 @@ public class AdapterTemplateAwal extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_personel, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
         vh = new ContohViewHolder(v);
         return vh;
     }
@@ -43,10 +44,18 @@ public class AdapterTemplateAwal extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ContohViewHolder) {
             ContohViewHolder view = (ContohViewHolder) holder;
-            User user = lstUser.get(position);
+            final Post user = lstPost.get(position);
 
-            view.txtPersonel.setText(user.getUsername());
-            view.btnPersonel.setText(user.getEmail());
+            view.txtTitle.setText(user.getTitle());
+            view.txtBody.setText(user.getBody());
+            view.btnComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, CommentActivity.class);
+                    intent.putExtra("postid",String.valueOf(user.getId()));
+                    context.startActivity(intent);
+                }
+            });
 
 
         }
@@ -54,22 +63,24 @@ public class AdapterTemplateAwal extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return lstUser.size();
+        return lstPost.size();
     }
 
 
     public class ContohViewHolder  extends RecyclerView.ViewHolder{
 
 
-        TextView txtPersonel;
-        ImageView imgPersonel;
-        Button btnPersonel;
+        TextView txtTitle;
+        TextView txtBody;
+        Button btnComment;
+
 
         public ContohViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtPersonel = (TextView) itemView.findViewById(R.id.txtTitle);
-            imgPersonel = (ImageView)itemView.findViewById(R.id.imgPersonel);
-            btnPersonel = (Button)itemView.findViewById(R.id.btnPersonel);
+            txtTitle = (TextView) itemView.findViewById(R.id.txtTitle);
+            txtBody = (TextView)itemView.findViewById(R.id.txtBody);
+            btnComment = (Button) itemView.findViewById(R.id.btnComment);
+
 
         }
     }

@@ -10,24 +10,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.DewaActivity">
+        <activity android:name=".ui.PostActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.CommentActivity"></activity>
+        <activity android:name=".ui.DewaActivity">
 
         </activity>
-        <activity android:name=".ui.ListPersonel">
-
-        </activity>
+        <activity android:name=".ui.ListPersonel"></activity>
         <activity android:name=".ui.ListBasic" />
-        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <dist:module dist:instant="true" />
 
