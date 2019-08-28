@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.juaracoding.absensi.R;
+import com.juaracoding.absensi.adapter.AdapterReqRes;
 import com.juaracoding.absensi.adapter.AdapterTemplateAwal;
 
 import com.juaracoding.absensi.model.reqres.User;
@@ -61,11 +62,11 @@ public class DewaActivity extends AppCompatActivity {
 
                     Log.d("Hasil data" , userList.toString());
 
-                  /*  AdapterTemplateAwal toadapter = new AdapterTemplateAwal (ListPersonel.this,userList);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ListPersonel.this, LinearLayoutManager.HORIZONTAL, false);
-                    rv.setLayoutManager(linearLayoutManager);
+                    AdapterReqRes toadapter = new AdapterReqRes (DewaActivity.this,userList.getData());
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DewaActivity.this, LinearLayoutManager.VERTICAL, false);
+                    lstDewa.setLayoutManager(linearLayoutManager);
 
-                    rv.setAdapter(toadapter);*/
+                    lstDewa.setAdapter(toadapter);
 
 
 
