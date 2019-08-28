@@ -21,7 +21,7 @@ public class APIClient {
 //local
 //public static String BASE_URL ="http://192.168.43.120/edcmonitor/";
     //remote
-   public static String BASE_URL ="http://192.168.5.138:9292/";
+   public static String BASE_URL ="https://reqres.in/api/";
  //   public static String API_KEY ="59D3CFCA29DB8697C4962A36EEB653C8";
     private static Retrofit retrofit = null;
 

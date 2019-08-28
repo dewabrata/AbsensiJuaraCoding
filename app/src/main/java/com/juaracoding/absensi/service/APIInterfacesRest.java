@@ -28,8 +28,14 @@ import retrofit2.http.Query;
 
  public interface APIInterfacesRest {
 
-    @GET("absensi/user/all")
+   @GET("absensi/user/all")
     Call<List<User>> getUser();
+
+
+    @GET("users")
+    Call<com.juaracoding.absensi.model.reqres.User> getUserReqres(@Query("page") String page);
+
+
 
    /* @FormUrlEncoded
     @POST("api/user/login")
