@@ -60,6 +60,8 @@ public class DewaActivity extends AppCompatActivity {
                 //Toast.makeText(LoginActivity.this,userList.getToken().toString(),Toast.LENGTH_LONG).show();
                 if (userList !=null) {
 
+
+
                     Log.d("Hasil data" , userList.toString());
 
                     AdapterReqRes toadapter = new AdapterReqRes (DewaActivity.this,userList.getData());

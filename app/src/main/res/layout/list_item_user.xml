@@ -5,10 +5,11 @@
     android:orientation="horizontal"
     android:padding="@dimen/spacing_middle"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       >
+        android:background="@color/amber_900">
 
         <ImageView
             android:id="@+id/imgPhoto"
@@ -16,10 +17,6 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image_6" />
-
-        <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -59,6 +56,10 @@
                 android:textColor="@color/grey_80" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/spacing_large"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

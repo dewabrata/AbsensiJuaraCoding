@@ -20,6 +20,9 @@ import java.util.List;
 
 public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private final int TIPE_PERTAMA = 1;
+    private final int TIPE_KEDUA = 2;
+
 
     Context context;
     List<Datum> lstUser;
@@ -35,8 +38,14 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_personel, parent, false);
-        vh = new ContohViewHolder(v);
+
+        if(viewType == TIPE_PERTAMA) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_personel, parent, false);
+            vh = new ContohViewHolder(v);
+        }else {
+            View v2 = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_user, parent, false);
+            vh = new ContohViewHolder2(v2);
+        }
         return vh;
     }
 
@@ -46,10 +55,21 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ContohViewHolder view = (ContohViewHolder) holder;
             Datum user = lstUser.get(position);
 
+
             view.txtPersonel.setText(user.getFirstName() +user.getFirstName());
             view.btnPersonel.setText(user.getEmail());
 
             Picasso.get().load(user.getAvatar()).into(view.imgPersonel);
+
+
+
+        }else{
+            ContohViewHolder2 view = (ContohViewHolder2)holder;
+            Datum user = lstUser.get(position);
+            view.txtPersonel2.setText(user.getFirstName() +user.getFirstName());
+            view.btnPersonel2.setText(user.getEmail());
+            view.txtDate.setText(user.getLastName());
+            Picasso.get().load(user.getAvatar()).into(view.imgPersonel2);
 
 
 
@@ -61,6 +81,19 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return lstUser.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+
+        Datum datum = lstUser.get(position);
+
+        if((datum.getId()% 2) == 0 ){
+            return TIPE_PERTAMA;
+        }else{
+            return TIPE_KEDUA;
+        }
+
+
+    }
 
     public class ContohViewHolder  extends RecyclerView.ViewHolder{
 
@@ -81,15 +114,17 @@ public class AdapterReqRes extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public class ContohViewHolder2  extends RecyclerView.ViewHolder{
 
 
-        TextView txtPersonel;
-        ImageView imgPersonel;
-        Button btnPersonel;
+        TextView txtPersonel2;
+        ImageView imgPersonel2;
+        TextView btnPersonel2;
+        TextView txtDate;
 
         public ContohViewHolder2(@NonNull View itemView) {
             super(itemView);
-            txtPersonel = (TextView) itemView.findViewById(R.id.txtPersonel);
-            imgPersonel = (ImageView)itemView.findViewById(R.id.imgPersonel);
-            btnPersonel = (Button)itemView.findViewById(R.id.btnPersonel);
+            txtPersonel2 = (TextView) itemView.findViewById(R.id.txtPersonel);
+            imgPersonel2 = (ImageView)itemView.findViewById(R.id.imgPhoto);
+            btnPersonel2 = (TextView)itemView.findViewById(R.id.txtEmail);
+            txtDate = (TextView)itemView.findViewById(R.id.registeredDate);
 
         }
     }
