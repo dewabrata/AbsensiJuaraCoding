@@ -74,7 +74,7 @@ public class PostActivity extends AppCompatActivity {
 
                     savedb();
 
-                    setupAdapterList(userList);
+                   // setupAdapterList(userList);
 
 
 
@@ -96,6 +96,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
                 progressDialog.dismiss();
+                sqlQueryList();
                 Toast.makeText(getApplicationContext(),"Maaf koneksi bermasalah",Toast.LENGTH_LONG).show();
                 call.cancel();
             }
@@ -139,7 +140,7 @@ public class PostActivity extends AppCompatActivity {
 
     public void sqlQueryList(){
 
-        String rawQuery = "SELECT distinct * FROM `Dataorder` where driver ='"+AppController.username+"' group by shipmentNo;";
+        String rawQuery = "SELECT * FROM `Post` ";
         StringQuery<Post> stringQuery = new StringQuery<>(Post.class, rawQuery);
         stringQuery
                 .async()
