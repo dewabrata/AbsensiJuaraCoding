@@ -6,26 +6,40 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.camerakit.CameraKitView;
 import com.jpegkit.Jpeg;
 import com.jpegkit.JpegImageView;
 import com.juaracoding.absensi.R;
-
+import com.location.aravind.getlocation.GeoLocator;
 
 
 public class PhotoActivity extends AppCompatActivity {
     private CameraKitView cameraView;
     private Button btnCapture;
     JpegImageView imageView;
+    private Button btnGps;
+    GeoLocator geoLocator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        geoLocator = new GeoLocator(getApplicationContext(),PhotoActivity.this);
         setContentView(R.layout.activity_photo);
         imageView = findViewById(R.id.imageView);
         cameraView = findViewById(R.id.camera);
         btnCapture = findViewById(R.id.btnCapture);
         btnCapture.setOnClickListener(photoOnClickListener);
+        btnGps = findViewById(R.id.btnGPS);
+
+        btnGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(PhotoActivity.this,geoLocator.getLattitude() + "," + geoLocator.getLongitude() + "\n" + geoLocator.getAddress(),Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

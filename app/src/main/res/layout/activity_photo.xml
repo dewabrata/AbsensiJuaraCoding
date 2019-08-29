@@ -37,4 +37,10 @@
         android:layout_height="wrap_content"
         android:text="Capture" />
 
+    <Button
+        android:id="@+id/btnGPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GPS" />
+
 </LinearLayout>
