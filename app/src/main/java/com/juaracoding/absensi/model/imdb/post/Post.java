@@ -5,23 +5,36 @@ import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.juaracoding.absensi.application.AppController;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
-public class Post implements Serializable, Parcelable
+@Table(database = AppController.class)
+public class Post extends BaseModel implements Serializable, Parcelable
 {
 
     @SerializedName("userId")
     @Expose
+    @Column
     private Integer userId;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    @PrimaryKey
+    private Integer idPost;
     @SerializedName("title")
     @Expose
+    @Column
     private String title;
     @SerializedName("body")
     @Expose
+    @Column
     private String body;
     public final static Creator<Post> CREATOR = new Creator<Post>() {
 
@@ -43,7 +56,7 @@ public class Post implements Serializable, Parcelable
 
     protected Post(Parcel in) {
         this.userId = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.idPost = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.body = ((String) in.readValue((String.class.getClassLoader())));
     }
@@ -59,13 +72,7 @@ public class Post implements Serializable, Parcelable
         this.userId = userId;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -85,7 +92,7 @@ public class Post implements Serializable, Parcelable
 
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(userId);
-        dest.writeValue(id);
+        dest.writeValue(idPost);
         dest.writeValue(title);
         dest.writeValue(body);
     }
@@ -94,4 +101,11 @@ public class Post implements Serializable, Parcelable
         return  0;
     }
 
+    public Integer getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(Integer idPost) {
+        this.idPost = idPost;
+    }
 }

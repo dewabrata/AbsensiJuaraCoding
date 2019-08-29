@@ -45,6 +45,7 @@ public class APIClient {
         GsonBuilder gb = new GsonBuilder();
         gb.registerTypeAdapter(String.class, new StringConverter());
         gb.serializeNulls();
+       // gb.excludeFieldsWithoutExposeAnnotation();
         Gson gson = gb.create();
 
 //192.168.43.171

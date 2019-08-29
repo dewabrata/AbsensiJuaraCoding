@@ -5,26 +5,39 @@ import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.juaracoding.absensi.application.AppController;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
-public class Comment implements Serializable, Parcelable
+@Table(database = AppController.class)
+public class Comment extends BaseModel implements Serializable, Parcelable
 {
 
     @SerializedName("postId")
     @Expose
+    @Column
     private Integer postId;
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private Integer id;
     @SerializedName("name")
     @Expose
+    @Column
     private String name;
     @SerializedName("email")
     @Expose
+    @Column
     private String email;
     @SerializedName("body")
     @Expose
+    @Column
     private String body;
     public final static Creator<Comment> CREATOR = new Creator<Comment>() {
 
