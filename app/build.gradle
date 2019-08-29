@@ -37,10 +37,16 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation 'com.squareup.retrofit2:converter-scalars:2.6.1'
 
+
     //library gambar
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    dependencies {
+        implementation 'com.camerakit:camerakit:1.0.0-beta3.11'
+        implementation 'com.camerakit:jpegkit:0.1.0'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.0'
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
+    }
 
     //dbflow
 
@@ -56,10 +62,6 @@ dependencies {
         // sql-cipher database encryption (optional)
         // compile "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:${dbflow_version}"
     }
-
-
-
-
 
 
 }

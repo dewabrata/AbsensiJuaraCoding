@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,10 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.juaracoding.absensi.R;
 import com.juaracoding.absensi.adapter.CommentAdapter;
 import com.juaracoding.absensi.adapter.PostAdapter;
+import com.juaracoding.absensi.application.AppController;
 import com.juaracoding.absensi.model.imdb.post.Comment;
 import com.juaracoding.absensi.model.imdb.post.Post;
 import com.juaracoding.absensi.service.APIClient;
 import com.juaracoding.absensi.service.APIInterfacesRest;
+import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.sql.queriable.StringQuery;
+import com.raizlabs.android.dbflow.structure.database.DatabaseWrapper;
+import com.raizlabs.android.dbflow.structure.database.transaction.ProcessModelTransaction;
+import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
+import com.raizlabs.android.dbflow.structure.database.transaction.Transaction;
 
 import org.json.JSONObject;
 
@@ -64,13 +72,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
 
-                    Log.d("Hasil data" , userList.toString());
-
-                    CommentAdapter toadapter = new CommentAdapter (CommentActivity.this,userList);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CommentActivity.this, LinearLayoutManager.VERTICAL, false);
-                    lstView.setLayoutManager(linearLayoutManager);
-
-                    lstView.setAdapter(toadapter);
+                   savedb(userList);
 
 
 
@@ -90,6 +92,7 @@ public class CommentActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
                 progressDialog.dismiss();
+                sqlQueryList();
                 Toast.makeText(getApplicationContext(),"Maaf koneksi bermasalah",Toast.LENGTH_LONG).show();
                 call.cancel();
             }
@@ -97,6 +100,77 @@ public class CommentActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void savedb(List<Comment> comments ){
+
+        FlowManager.getDatabase(AppController.class)
+                .beginTransactionAsync(new ProcessModelTransaction.Builder<>(
+                        new ProcessModelTransaction.ProcessModel<Comment>() {
+                            @Override
+                            public void processModel(Comment comment, DatabaseWrapper wrapper) {
+
+                                comment.save();
+
+
+
+                            }
+
+                        }).addAll(comments).build())  // add elements (can also handle multiple)
+                .error(new Transaction.Error() {
+                    @Override
+                    public void onError(Transaction transaction, Throwable error) {
+                        Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                })
+                .success(new Transaction.Success() {
+                    @Override
+                    public void onSuccess(Transaction transaction) {
+                        Toast.makeText(getApplicationContext(),"Data Tersimpan",Toast.LENGTH_LONG).show();
+                        sqlQueryList();
+                    }
+                }).build().execute();
+
+
+    }
+
+
+
+    public void sqlQueryList(){
+
+        String rawQuery = "SELECT * FROM `Comment` ";
+        StringQuery<Comment> stringQuery = new StringQuery<>(Comment.class, rawQuery);
+        stringQuery
+                .async()
+                .queryListResultCallback(new QueryTransaction.QueryResultListCallback<Comment>() {
+                                             @Override
+                                             public void onListQueryResult(QueryTransaction transaction, @NonNull List<Comment> models) {
+
+                                                 setupAdapterList(models);
+
+
+                                             }
+                                         }
+
+
+                )
+                .execute();
+
+
+
+
+
+    }
+
+
+    public void setupAdapterList(List<Comment> model){
+
+        CommentAdapter toadapter = new CommentAdapter (CommentActivity.this,model);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CommentActivity.this, LinearLayoutManager.VERTICAL, false);
+        lstView.setLayoutManager(linearLayoutManager);
+
+        lstView.setAdapter(toadapter);
 
     }
 }
