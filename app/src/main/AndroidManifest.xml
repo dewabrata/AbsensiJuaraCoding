@@ -11,29 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.PhotoActivity">
+        <activity android:name=".ui.Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PostActivity">
+        <activity android:name=".ui.PhotoActivity">
 
         </activity>
+        <activity android:name=".ui.PostActivity" />
         <activity android:name=".ui.CommentActivity" />
-        <activity android:name=".ui.DewaActivity"></activity>
+        <activity android:name=".ui.DewaActivity" />
         <activity android:name=".ui.ListPersonel" />
         <activity android:name=".ui.ListBasic" />
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <dist:module dist:instant="true" />
 
